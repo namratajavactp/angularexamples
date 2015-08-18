@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<!-- http://www.undefinednull.com/2014/08/11/a-brief-walk-through-of-the-ng-options-in-angularjs/ -->
+<head>
+    <title>Select Example </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="Test">
+    <p> selected item is:{{selecteditem}}</p>
+    <select ng-model="selecteditem">
+        <option ng-repeat="item in items" value="{{item.age}}">{{item.name}}</option>
+    </select>
+
+    <p>
+        Note: ngOptions provides an iterator facility for the ‘option’ element which should be
+        used instead of ngRepeat when you want the select model to be bound to a non-string value.
+
+        This is because an option element can only be bound to string values at present.
+    </p>
+
+</div>
+<script type="text/javascript">
+    var app =angular.module("myapp",[]);
+    app.controller("Test",function($scope) {
+
+         $scope.items = [{name:'one',age:20},{name:'two',age:25},{name:'three',age:34}];
+
+
+    });
+</script>
+</body>
+</html>

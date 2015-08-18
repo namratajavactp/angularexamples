@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - custom directive using link function for dom manipulation</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
+    
+</head>
+<body ng-app="myapp">
+<div ng-controller="MyController" >
+    <userinfo >This will be replaced</userinfo>
+</div>
+
+<script>
+    myapp = angular.module("myapp", []);
+    myapp.directive('userinfo', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+
+        directive.compile = function(element, attributes) {
+            element.css("border", "10px solid #cccccc");
+
+            var linkFunction = function($scope, element, attributes) {
+                element.bind('click', function () {
+                element.css("background-color", "#ffff00");
+                element.html('You clicked me!'+$scope.firstName);
+            });
+                element.html("This is the new content: " + $scope.firstName);
+            
+            }
+
+            return linkFunction;
+        }
+
+        return directive;
+    })
+    myapp.controller("MyController", function($scope, $http) {
+        $scope.cssClass = "notificationDiv";
+
+        $scope.firstName = "Jakob";
+
+        $scope.doClick = function() {
+            console.log("doClick() called");
+        }
+    });
+</script>  
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="app2">
+    <div ng-controller="CalculatorController">
+        Enter a number:
+        <input type="number" ng-model="number1" />
+        <button ng-click="doSquare()">X<sup>2</sup></button>
+       
+        <div>Answer: {{answer}}</div>
+    </div>
+</div>
+<script>
+var app = angular.module('app1', []);
+ 
+app.service('MathService', function() {
+    this.add = function(a, b) { return a + b };
+     
+    this.subtract = function(a, b) { return a - b };
+     
+    this.multiply = function(a, b) { return a * b };
+     
+    this.divide = function(a, b) { return a / b };
+});
+ 
+var app1 = angular.module('app3', []);
+app1.service('MathService', function() {
+    this.add = function(a, b) { return a + b };
+     
+    this.subtract = function(a, b) { return a - b };
+     
+    this.multiply = function(a, b) { return a * a*a};
+     
+    this.divide = function(a, b) { return a / b };
+});
+
+ 
+var a =angular.module('app2',['app1','app3']);
+a.controller('CalculatorController', function($scope,MathService) {
+ 
+  
+    
+    $scope.doSquare = function() {
+      
+        $scope.answer =MathService.multiply($scope.number1,$scope.number1);
+    }
+ 
+  
+});
+</script>
+</body></html>

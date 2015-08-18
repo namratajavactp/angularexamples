@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+
+  <div ng-controller="MyController" >
+    <button ng-click="myData.doClick()">Send AJAX Request</button>
+    <br/>
+    Data from server: {{myData.fromServer}}
+  </div>
+
+  <script>
+    angular.module("myapp", [])
+        .controller("MyController", function($scope, infoService) {
+            $scope.myData = {};
+            $scope.myData.doClick = function() {
+                
+                infoService.getInfo('greeting').then(function(data) {
+                    $scope.myData.fromServer = data;
+                });
+             }
+          })
+        .factory('infoService', function($http, $log, $q) {
+            return {
+                getInfo: function(greet) {
+                var deferred = $q.defer();
+                $http.get('http://rest-service.guides.spring.io/' + greet)
+                .success(function(data) {
+                    deferred.resolve(data);
+                        /*{
+                        id: data.id,
+                        content: data.content});
+                        } */
+                      })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+                    });
+                return deferred.promise;
+                }
+            }
+          });
+  </script>
+
+</body>
+
+</html>

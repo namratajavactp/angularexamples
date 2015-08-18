@@ -1,0 +1,16 @@
+[
+    {
+        "regNo" : "1",
+        "name" : "ABC",
+        "address" : "abc adddress",
+        "visitHrs" : "10",
+        "tel" : "xxx-xxxx"
+    },
+    {
+        "regNo" : "2",
+        "name" : "PQR",
+        "address" : "pqr address" ,
+        "visitHrs" : "20" ,
+        "tel" : "yyy-yyyy"
+    }
+]

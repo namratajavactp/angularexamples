@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AngularJS Routing example</title>
+       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+          <script src="scripts/app/main.js"></script>
+          <script src="scripts/app/services.js"></script>
+          <script src="scripts/app/controller.js"></script>
+  </head>
+  
+ 
+  <body ng-app="sampleApp">
+ 
+    <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+            <ul class="nav">
+                <li><a href="#CreateDoctor"> Create Doctor</a></li>
+                <li><a href="#AddPatient"> Add Patient to Doctor </a></li>
+                <li><a href="#ListDoctorPatient">List patients based on doctorname </a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div ng-view></div>
+        </div>
+        </div>
+    </div>
+ 
+   
+
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<div ng-controller="BookController">
+    <fieldset>
+        <label>Appointment Ref No</label>
+        <input type="text" readonly ng-model="newpatient.regNo" />
+        <br />
+        <label>Doctors Name</label>
+        <input type="text" readonly value="{{doctor.name}}" />
+        <br />
+        <label>Specialized</label>
+        <select ng-controller="MenuController">
+            <option ng-repeat="speciality in types">{{speciality.type}}</option>
+        </select>
+        <br />
+        <label>Patient Name</label>
+        <input type="text" ng-model="newpatient.name" />
+        <br />
+        <label>Age</label>
+        <input type="text" ng-model="newpatient.age" />
+        <br />
+        <label>Sex</label>
+        <input type="radio" name="sex" value="Male" ng-model="newpatient.sex" >Male</input>
+        <input type="radio" name="sex" value="Female" ng-model="newpatient.sex" >Female</input>
+        <br />
+        <label>Patient Contact</label>
+        <input type="text" ng.model="newpatient.contact" />
+        <br />
+        <label>Appointment Date</label>
+        <input type="date" ng-model="newpatient.appdate" />
+        <label>Appointment Time</label>
+        <br />
+        <a href="#getDocs/{{speciality}}">Back to List</a>
+        <button ng-click="saveAppointment()">Book an Appointment</button>
+    </fieldset>
+</div>

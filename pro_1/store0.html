@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body ng-app="store">
+<div ng-controller="StoreController">
+    
+ <!--   <div ng-show="!product.soldOut">   -->
+    <div ng-repeat="product in products">
+    <div ng-hide="product.soldOut">
+    <h1> {{product.name}}
+         <img ng-src="{{product.images[0].full}}"/>
+        
+    </h1>
+    <h2>{{product.price|currency}}</h2>
+    <p>{{product.description}}</p>
+    
+    <button ng-show=product.canPurchase>Add to cart</button>
+   
+    </div>
+    </div>
+</div>
+<script type="text/javascript">
+    
+    var app = angular.module("store",[]);
+    app.controller("StoreController",function($scope) {
+        
+       
+        var gem = [{ name:"Dodecahedron", 
+                     price:2.95,
+                     description:'Some gems have hidden qualities beyond their lusture.This is fine quality costliest gem',
+                     canPurchase:true,
+                     soldOut:false,
+                     
+                   },
+                   { name:"Pentagonal Gem", 
+                     price:3,
+                     description:'This has unique luture',
+                     canPurchase:true,
+                     soldOut:false,
+                      }
+                  ];
+              
+        $scope.products=gem;
+        
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div ng-controller="GetDocsController">
+    <label>List of Doctors for <b>{{speciality|uppercase}}</b></label>
+    <br />
+    <a href="#add">Add Doctor</a>
+    <label>Search Doctor</label><input type="text" ng-model="doc.name" />
+    <table>
+        <thead>
+            <tr>
+            <th>Reg No</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Visiting Hours</th>
+            <th>Contact No.</th>
+            <th>Appointment</th>
+            <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="doctor in doctors | filter : doc" >
+            <tr>
+            <td>{{doctor.regNo}}</td>
+            <td>{{doctor.name}}</td>
+            <td>{{doctor.address}}</td>
+            <td>{{doctor.visitHrs}}</td>
+            <td>{{doctor.tel}}</td>
+            <td><a href="#book/{{speciality|lowercase}}/{{doctor.regNo}}" >Book</a></td>
+            <td><a href="#details/{{speciality|lowercase}}/{{doctor.regNo}}" >Details</a></td>
+            <td><a href="#edit/{{speciality|lowercase}}/{{doctor.regNo}}">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

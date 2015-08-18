@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Hello World, AngularJS </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="BasicController">
+    Name:<input type="text" ng-model="myname"/>
+    Surname:<input type="text" ng-model="mysurname"/>
+   <h2>{{myname1}}</h2>
+   <h2>{{myname}}</h2>
+    <h2>{{batchname}}</h2>
+    <h2>{{mysurname}}</h2>
+
+</div>
+<script type="text/javascript">
+    function BasicController($scope) {
+       $scope.myname1="namrata";
+
+         $scope.batchname="angularjs";
+
+        $scope.myname = $scope.myname + "  abc";
+
+        }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<!-- http://www.undefinednull.com/2014/08/11/a-brief-walk-through-of-the-ng-options-in-angularjs/ -->
+<head>
+    <title>Select Example </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="Test">
+    <p> selected item is:{{selecteditem}}</p>
+    <select ng-model="selecteditem">
+        <option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+    </select>
+
+</div>
+<script type="text/javascript">
+    var app =angular.module("myapp",[]);
+    app.controller("Test",function($scope) {
+
+        //     $scope.abc="angular session";
+
+        $scope.items = ['one','two','three','four'];
+
+
+    });
+</script>
+</body>
+</html>

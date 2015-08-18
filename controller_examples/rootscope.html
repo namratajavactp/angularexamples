@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example105-production</title>
+  
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  
+</head>
+<body ng-app>
+<div ng-controller="MyCtrl1">
+  I just set the global variable.
+</div>
+<div ng-controller="MyCtrl2">
+  Hello, {{name2}}!
+</div>
+
+
+<script>
+  
+function MyCtrl1($scope, $rootScope) {
+    $rootScope.name = 'anonymous'; 
+}
+
+function MyCtrl2($scope, $rootScope) {
+    $scope.name2 = $rootScope.name; 
+}
+  
+</script>
+</body>
+</html>

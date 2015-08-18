@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example105-production</title>
+
+
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+
+</head>
+<body >
+    <div ng-app="myApp">
+    <div ng-controller="wish">
+        Name:<input type="text" ng-model="myname"/>
+        <button ng-click="greet1()">Greet</button>
+      {{ 'World' | greet }}
+     <div ng-hide="disp">  {{ myname | greet }}</div>
+    </div>
+  </div>
+</body>
+<script>
+  
+  // declare a module
+  var myAppModule = angular.module('myApp', []);
+
+  // configure the module.
+  // in this example we will create a greeting filter
+  
+  myAppModule.filter('greet', function() {
+   return function(name) {
+      return 'Hello, ' + name + '!';
+    };
+  });
+
+ myAppModule.controller('wish',function($scope){
+         $scope.disp = "true";
+         $scope.clear = function() {
+              $scope.myname = "";
+          }
+
+          $scope.greet1 = function() {
+            //  $scope.myname1 = "hi  "+$scope.myname;
+              $scope.disp = "false";
+
+          }
+  });
+  
+</script>
+</html>

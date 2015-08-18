@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body ng-app="store">
+<div ng-controller="StoreController">
+    
+ <!--   <div ng-show="!product.soldOut">   -->
+   
+    <div ng-hide="product.soldOut">
+    <h1> {{product.name}}   </h1>
+    <h2>{{product.price|currency}}</h2>
+    <p>{{product.description}}</p>
+    
+    <button ng-show=product.canPurchase>Add to cart</button>
+   
+    
+    </div>
+</div>
+<script type="text/javascript">
+    
+    var app = angular.module("store",[]);
+    app.controller("StoreController",function($scope) {
+        
+       
+        var gem = { name:"Dodecahedron", 
+                     price:2.95,
+                     description:'This is fine quality costliest gem',
+                     canPurchase:false,
+                     soldOut:false
+                     
+                   };
+                  
+              
+        $scope.product=gem;
+        
+    });
+  
+    /*
+    var app1=angular.module("store1",[]);
+    
+    app1.controller("Store1Controller",function($scope){
+    
+       
+    
+    });
+    
+    */
+    
+</script>
+</body>
+</html>

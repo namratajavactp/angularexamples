@@ -1,0 +1,30 @@
+<div ng-controller="AddEditDocController">
+    <h1>{{type}}</h1>
+    <fieldset>
+        <label>Reg No</label>
+        <input type="text" readonly ng-model="newdoc.regNo"/>
+        <br />
+        <label>Name</label>
+        <input type="text" ng-model="newdoc.name" />
+        <br />
+        <label>Specialized</label>
+        <select ng-model="newdoc.speciality">
+            <option ng-repeat="speciality in types" value="{{speciality.type}}">{{speciality.type}}</option>
+        </select>
+        <br />
+        <label>Qualification</label>
+        <input type="text" />
+        <br />
+        <label>Address</label>
+        <textarea ng-model="newdoc.address"></textarea>
+        <br />
+        <label>Visiting Hrs</label>
+        <textarea ng-model="newdoc.visitHrs"></textarea>
+        <br />
+        <label>Contact No</label>
+        <input type="text" ng-model="newdoc.tel"/>
+        <br />
+        <a href="#getDocs/{{specs.type}}">Back to List</a>
+        <button ng-click="update();">{{type}}</button>
+    </fieldset>
+</div>

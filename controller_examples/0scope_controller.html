@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Hello World, AngularJS </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ContactController">
+
+
+    <h2>{{ myname }}</h2>
+    <h> {{store.name}}</h>
+    <h>{{store.price|currency}}</h>
+
+
+</div>
+<script type="text/javascript">
+
+
+    function ContactController($scope) {
+
+        $scope.myname="namrata";
+        var gem = { name:"Namrata Marathe", price:2.95,
+            description:'This is fine quality costliest gem',
+            canPurchase:false,
+            soldOut:true,};
+
+        $scope.store=gem;
+    }
+
+
+    //https://developer.chrome.com/devtools/docs/javascript-debugging
+</script>
+</body>
+</html>

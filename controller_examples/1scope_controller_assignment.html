@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Hello World, AngularJS </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ContactController">
+
+    <h2>  {{ myname1 }}   </h2>
+    <h2>  {{ per.name }} </h2>
+    <h2>  {{per.surname }}</h2>
+
+</div>
+<script type="text/javascript">
+    function ContactController($scope) {
+
+        $scope.myname1="hi angular js";
+
+        var person = {
+            name:"namrata",
+            surname:"marathe",}
+        $scope.per=person;
+
+    }
+</script>
+</body>
+</html>

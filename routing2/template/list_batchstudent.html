@@ -1,0 +1,21 @@
+
+
+    <form>
+    <label>BatchName</label> 
+        <select ng-model="newstud.studbatch" ng-options="batch.batchname for batch in batches"></select></br><br/>
+        
+     <input type="button" value="List Students" ng-click="listStud()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>StudName</th>
+ </tr>
+</thead>
+<tbody>
+<tr ng-repeat="student in students1">
+    <td>{{ student.studname }}</td>
+ </tr>
+</tbody>
+</table>    
+</div>

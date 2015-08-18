@@ -1,0 +1,35 @@
+
+
+    <form>
+    <label>BatchName</label> 
+        <input type="text" name="batchname" ng-model="newbatch.batchname"/>
+    <label>Course</label> 
+        <input type="text" name="batchcourse" ng-model="newbatch.batchcourse"/>
+    <label>Start Date</label> 
+        <input type="text" name="batchstartdate" ng-model="newbatch.batchstartdate"/>
+        <br/>
+        <input type="hidden" ng-model="newbatch.id" />
+     <input type="button" value="Save" ng-click="saveBatch()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>Name</th>
+    <th>Course</th>
+    <th>StartDate</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="batch in batches">
+    <td>{{ batch.batchname }}</td>
+    <td>{{ batch.batchcourse }}</td>
+    <td>{{ batch.batchstartdate }}</td>
+    <td>
+        <a  href="#" ng-click="edit(batch.id)">edit</a> | 
+        <a href="#" ng-click="delete(batch.id)">delete</a>
+    </td>
+ </tr>
+</tbody>
+</table>    
+</div>

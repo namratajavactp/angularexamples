@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="app">
+    <div ng-controller="CalculatorController">
+        Enter a number:
+        <input type="number" ng-model="number" />
+        <button ng-click="doSquare()">X<sup>2</sup></button>
+       
+        <div>Answer: {{answer}}</div>
+    </div>
+</div>
+<script>
+var app = angular.module('app', []);
+ 
+app.service('MathService', function() {
+    this.add = function(a, b) { return a + b };
+     
+    this.subtract = function(a, b) { return a - b };
+     
+    this.multiply = function(a, b) { return a * b };
+     
+    this.divide = function(a, b) { return a / b };
+});
+ 
+
+ 
+app.controller('CalculatorController', function($scope,MathService) {
+ 
+    $scope.doSquare = function() {
+        $scope.answer =  MathService.multiply($scope.number,$scope.number);
+    }
+ 
+  
+});
+</script>
+</body></html>

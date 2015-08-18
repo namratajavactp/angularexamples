@@ -1,0 +1,21 @@
+
+
+    <form>
+    <label>DoctorName</label>
+        <select ng-model="newpatient.patientdoctor" ng-options="doctor.doctorname for doctor in doctorlist"></select></br><br/>
+        
+     <input type="button" value="List Patients" ng-click="listPatient()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>Patient Names</th>
+ </tr>
+</thead>
+<tbody>
+<tr ng-repeat="patient in patientlist1">
+    <td>{{ patient.patientname }}</td>
+ </tr>
+</tbody>
+</table>    
+</div>

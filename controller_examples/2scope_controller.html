@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Hello World, AngularJS </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ContactController">
+    Greet:<input type="text" ng-model="myname"/>
+
+    <button ng-click="greet()">Greet</button>
+
+    <h2>  {{ myname1 }}   </h2>
+    <h2>  {{ myname  }}   </h2>
+
+</div>
+<script type="text/javascript">
+    function ContactController($scope) {
+
+            $scope.myname1="angular session";
+
+
+        $scope.greet = function() {
+            $scope.myname1 = "hi  "+$scope.myname;
+        }
+    }
+</script>
+</body>
+</html>

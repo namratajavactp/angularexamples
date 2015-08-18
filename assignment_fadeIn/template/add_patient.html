@@ -1,0 +1,36 @@
+
+
+    <form>
+    <label>PatientName</label>
+        <input type="text" name="patientname" ng-model="newpatient.patientname"/>
+    <label>PatientCategory</label>
+        <input type="text" name="patientcat" ng-model="newpatient.patientcat"/>
+    <label>PatientDoctor</label>
+        <select ng-model="newpatient.patientdoctor" ng-options="doctor.doctorname for doctor in doctorlist"></select></br><br/>
+
+        
+        <input type="hidden" ng-model="newpatient.id" />
+     <input type="button" value="Save" ng-click="savePatient()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>PatientName</th>
+    <th>PatientCategory</th>
+    <th>Patient's Doctor</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr my-dom-directive ng-repeat="patient in patientlist">
+    <td>{{ patient.patientname }}</td>
+    <td>{{ patient.patientcat }}</td>
+    <td>{{ patient.patientdoctor.doctorname }}</td>
+    <td>
+        <a  href="#" ng-click="edit(patient.id)">edit</a> |
+        <a href="#" ng-click="delete(patient.id)">delete</a>
+    </td>
+ </tr>
+</tbody>
+</table>    
+</div>

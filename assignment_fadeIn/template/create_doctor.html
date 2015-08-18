@@ -1,0 +1,39 @@
+
+
+    <form>
+    <label>Doctor Name</label>
+        <input type="text" name="doctorname" ng-model="newdoctor.doctorname"/>
+    <label>Doctor Category</label>
+        <input type="text" name="doctorcat" ng-model="newdoctor.doctorcat"/>
+    <label>Doctor Available Days Of Week</label>
+        <input type="text" name="doctorweekdays" ng-model="newdoctor.doctorweekdays"/>
+        <br/>
+        <input type="hidden" ng-model="newdoctor.id" />
+     <input type="button" value="Save" ng-click="saveDoctor()" />
+    </form>
+            {{newdoctor.doctorname}}
+<table>
+<thead> 
+<tr>
+    <th>Doctor Name</th>
+    <th>Doctor Category</th>
+    <th>Doctor Available Days Of Week</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr my-dom-directive ng-repeat="doctor in doctorlist">
+    <td>{{ doctor.doctorname }}</td>
+    <td>{{ doctor.doctorcat }}</td>
+    <td>{{ doctor.doctorweekdays }}</td>
+    <td>
+        <input type="button" value="Edit" ng-click="edit(doctor.id)" />
+        <input type="button" value="Delete" ng-click="delete(doctor.id)" />
+      <!--
+        <a  href="#" ng-click="edit(doctor.id)">edit</a> |
+        <a href="#" ng-click="delete(doctor.id)">delete</a>  -->
+    </td>
+ </tr>
+</tbody>
+</table>    
+</div>

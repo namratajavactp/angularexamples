@@ -1,0 +1,26 @@
+<div ng-controller="BookController">
+    <fieldset>
+    </fieldset>
+    <table>
+        <thead>
+            <tr>
+                <th>Ref No</th>
+                <th>Name</th>
+                <th>Sex</th>
+                <th>Contact</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="patient in patients">
+                <td>{{patient.refNo}}</td>
+                <td>{{patient.name}}</td>
+                <td>{{patient.sex}}</td>
+                <td>{{patient.contact}}</td>
+                <td>{{patient.appdate}}</td>
+                <td>{{patient.time}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

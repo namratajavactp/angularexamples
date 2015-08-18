@@ -1,0 +1,36 @@
+
+
+    <form>
+    <label>StudName</label> 
+        <input type="text" name="studname" ng-model="newstud.studname"/>
+    <label>StudCourse</label> 
+        <input type="text" name="studcourse" ng-model="newstud.studcourse"/>
+    <label>StudBatch</label> 
+        <select ng-model="newstud.studbatch" ng-options="batch.batchname for batch in batches"></select></br><br/>
+
+        
+        <input type="hidden" ng-model="newstud.id" />
+     <input type="button" value="Save" ng-click="saveStudent()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>StudName</th>
+    <th>StudCourse</th>
+    <th>StudBatch</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="student in students">
+    <td>{{ student.studname }}</td>
+    <td>{{ student.studcourse }}</td>
+    <td>{{ student.studbatch.batchname }}</td>
+    <td>
+        <a  href="#" ng-click="edit(student.id)">edit</a> | 
+        <a href="#" ng-click="delete(student.id)">delete</a>
+    </td>
+ </tr>
+</tbody>
+</table>    
+</div>

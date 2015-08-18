@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+
+  <div ng-controller="MyController" >
+    <button ng-click="myData.doClick(item, $event)">Send AJAX Request</button>
+    <br/>
+    Data from server: {{myData.fromServer}}
+  </div>
+
+  <script>
+    var app = angular.module("myapp", []);
+//https://chrome.google.com/webstore/search/CORS?utm_source=chrome-ntp-icon
+//Allow-control Allow-origin in google chrome
+
+       app.controller("MyController", function($scope, $http) {
+            $scope.myData = {};
+            $scope.myData.doClick = function(item, event) {
+
+
+            	// $http.defaults.headers.common.Accept = 'text/xml';
+              //  var responsePromise = $http.get("http://rest-service.guides.spring.io/greeting");
+
+                var responsePromise = $http.get("http://localhost:8080/SpringMVC/movie/ironMan");
+                responsePromise.success(function(data, status, headers, config) {
+                 //   $scope.myData.fromServer = data.title;
+                  
+                	$scope.myData.fromServer = data;
+                	alert(data);
+                	alert(headers);
+                	alert("AJAX Success!");
+                });
+                responsePromise.error(function(data, status, headers, config) {
+                    alert("AJAX failed!");
+                });
+            }
+
+
+
+
+
+        } );
+  </script>
+
+</body>
+
+</html>

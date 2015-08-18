@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ContactController">
+    <form>
+    <label>Name</label> 
+        <input type="text" name="name" ng-model="newcontact.name"/>
+    <label>Email</label> 
+        <input type="text" name="email" ng-model="newcontact.email"/>
+    <label>Phone</label> 
+        <input type="text" name="phone" ng-model="newcontact.phone"/>
+        <br/>
+        <input type="hidden" ng-model="newcontact.id" />
+     <input type="button" value="Save" ng-click="saveContact()" />
+    </form>
+<table>
+<thead> 
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr my-dom-directive ng-repeat="contact in contacts">
+    <td>{{ contact.name }}</td>
+    <td>{{ contact.email }}</td>
+    <td>{{ contact.phone }}</td>
+    <td>
+        <a  href="#" ng-click="edit(contact.id)">edit</a> | 
+        <a href="#" ng-click="delete(contact.id)">delete</a>
+    </td>
+ </tr>
+</tbody>
+</table>    
+</div>
+<script>
+    var app = angular.module('app',[]);
+    app.directive('myDomDirective', function () {
+        return {
+            link: function ($scope, element, attrs) {
+                element.bind('click', function () {
+                    element.html('You clicked me!');
+                });
+                element.bind('mouseenter', function () {
+                    element.css('background-color', 'yellow');
+                });
+                element.bind('mouseleave', function () {
+                    element.css('background-color', 'white');
+                });
+            }
+        };
+    });
+    var uid = 1;
+ 
+ 
+  app.controller("ContactController",function($scope) {
+
+
+     
+    $scope.contacts = [
+        { id:0, 'name': 'Angular', 
+          'email':'hello@gmail.com', 
+          'phone': '123-2343-44'
+        }
+
+
+    ];
+     
+    $scope.saveContact = function() {
+         
+        if($scope.newcontact.id == null) {
+        //if this is new contact, add it in contacts array
+        $scope.newcontact.id = uid++;
+        $scope.contacts.push($scope.newcontact);
+        } else {
+        //for existing contact, find this contact using id
+        //and update it.
+        for(i in $scope.contacts) {
+            if($scope.contacts[i].id == $scope.newcontact.id) {
+            $scope.contacts[i] = $scope.newcontact;
+            }
+        }                
+        }
+         
+        //clear the add contact form
+        $scope.newcontact = {};
+    }
+
+
+     
+    $scope.delete = function(id) {
+         
+        //search contact with given id and delete it
+        for(i in $scope.contacts) {
+            if($scope.contacts[i].id == id) {
+                $scope.contacts.splice(i,1);
+                $scope.newcontact = {};
+            }
+        }
+         
+    }
+     
+     
+    $scope.edit = function(id) {
+    //search contact with given id and update it
+        for(i in $scope.contacts) {
+            if($scope.contacts[i].id == id) {
+                //we use angular.copy() method to create 
+                //copy of original object
+                $scope.newcontact = angular.copy($scope.contacts[i]);
+            }
+        }
+    }
+});
+    
+
+</script>    
+</body></html>

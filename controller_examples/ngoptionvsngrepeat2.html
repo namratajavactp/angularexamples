@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<!-- http://www.undefinednull.com/2014/08/11/a-brief-walk-through-of-the-ng-options-in-angularjs/ -->
+<head>
+    <title>Select Example </title>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="Test">
+    <p>Note: Now the selected item is bound to an object instead of string value! </p>
+    <p> selected item is:{{selecteditem}}</p>
+    <p> age of selected item is:{{selecteditem.age}}</p>
+    <select ng-model="selecteditem" ng-options="item.name for item in items">
+    </select>
+
+</div>
+<script type="text/javascript">
+    var app =angular.module("myapp",[]);
+    app.controller("Test",function($scope) {
+
+         $scope.items = [{name:'one',age:20},{name:'two',age:25},{name:'three',age:34}];
+
+        //do default selection
+        $scope.selecteditem = $scope.items[0];
+
+
+    });
+</script>
+</body>
+</html>

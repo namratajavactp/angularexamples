@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World, AngularJS </title>
+<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body ng-app>
+<div ng-controller="StoreController">
+    
+     <h1> {{product.name}}   </h1>
+    <h2>{{product.price|currency}}</h2>
+    <p>{{product.description}}</p>
+    
+    
+    </div>
+</div>
+<script type="text/javascript">
+    
+  
+    function("StoreController",function($scope) {
+        
+       
+        var gem = { name:"Dodecahedron", 
+                     price:2.95,
+                     description:'This is fine quality costliest gem',
+                     canPurchase:true,
+                     soldOut:false,
+                     
+                   };
+                  
+              
+        $scope.product=gem;
+        
+    });
+</script>
+</body>
+</html>

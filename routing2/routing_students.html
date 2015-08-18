@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AngularJS Routing example</title>
+       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  </head>
+  
+ 
+  <body ng-app="sampleApp">
+ 
+    <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+            <ul class="nav">
+                <li><a href="#CreateBatch"> Create Batch</a></li>
+                <li><a href="#AddStudent"> Add Student to Batch </a></li>
+                <li><a href="#ListBatchStudent">List students based on batchid </a></li>  
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div ng-view></div>
+        </div>
+        </div>
+    </div>
+ 
+   
+    <script>
+        //Define an angular module for our app
+        var sampleApp = angular.module('sampleApp',[]);
+
+        //Define Routing for app
+        //Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
+        //Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
+        sampleApp.config(['$routeProvider',
+          function($routeProvider) {
+            $routeProvider.
+              when('/CreateBatch', {
+                templateUrl: 'template/create_batch.html',
+                controller: 'BatchesController'
+            }).
+              when('/AddStudent', {
+                templateUrl: 'template/add_student.html',
+                controller: 'AddStudentsController'
+              }).
+              when('/ListBatchStudent', {
+                templateUrl: 'template/list_batchstudent.html',
+                controller: 'ListBatchStudentController'
+              }).
+              otherwise({
+                redirectTo: '/CreateBatch'
+              });
+        }]);
+
+
+        sampleApp.controller('BatchesController', function($scope,$rootScope) {
+               var uid = 1;
+             $scope.batches = [
+        { id:0, 'batchname': 'angularbatch', 
+          'batchcourse':'AngularJS', 
+          'batchstartdate': '23-09-14'
+        }
+    ];
+            
+            $rootScope.batches=$scope.batches;
+     
+    $scope.saveBatch = function() {
+         
+        if($scope.newbatch.id == null) {
+        //if this is new batch, add it in batches array
+        $scope.newbatch.id = uid++;
+        $scope.batches.push($scope.newbatch);
+        } else {
+        //for existing contact, find this contact using id
+        //and update it.
+        for(i in $scope.batches) {
+            if($scope.batches[i].id == $scope.newbatch.id) {
+            $scope.batches[i] = $scope.newbatch;
+            }
+        }                
+        }
+         
+        //clear the add contact form
+        $scope.newbatch = {};
+        
+        $rootScope.batches=$scope.batches;
+    }
+
+        });
+
+
+        sampleApp.controller('AddStudentsController', function($scope,$rootScope,$window) {
+
+            $scope.batches=$rootScope.batches;
+            var uid = 1;
+            
+             $scope.students = [
+        { id:0, 'studname': 'Rohit', 
+          'studcourse':'AngularJS', 
+          'studbatch':{'batchname': 'angularbatch'}
+        }
+    ];
+           $rootScope.students=$scope.students;
+        //    $window.alert($rootScope.students[0].batchname);
+            
+           $scope.saveStudent = function() {
+         
+              
+        if($scope.newstud.id == null) {
+        //if this is new batch, add it in batches array
+        $scope.newstud.id = uid++;
+            var batchname= $scope.newstud.studbatch.batchname;
+            
+              var studname= $scope.newstud.studname;
+       //    $window.alert("id null"+batchname+" studname"+studname);
+        $scope.students.push($scope.newstud);
+        } else {
+        //for existing contact, find this contact using id
+        //and update it.
+        for(i in $scope.students) {
+            if($scope.students[i].id == $scope.newstud.id) {
+            $scope.students[i] = $scope.newstud;
+            
+            }
+        }                
+        }
+         
+        //clear the add contact form
+        $scope.newstud = {};
+         $rootScope.students=$scope.students;
+     //    $window.alert($rootScope.students[0].studname);
+        
+    } 
+
+        });
+
+        
+        
+    sampleApp.controller('ListBatchStudentController', function($scope,$rootScope,$window) {
+
+            $scope.batches=$rootScope.batches;
+                      
+            $scope.students=$rootScope.students;
+        
+           var students1 = [];
+            $scope.students1=students1;
+           $scope.listStud = function() {
+         
+           var batchname = $scope.newstud.studbatch.batchname;
+        
+               
+              
+          //  $window.alert($scope.students[0].studbatch.batchname);
+        
+        for(i in $scope.students) {
+                       
+            if($scope.students[i].studbatch.batchname===batchname) {
+                 $scope.students1.push($scope.students[i]);
+              //   $window.alert("student1"+students1[i].studname);
+                
+            }
+        }  
+           }
+     
+    });
+
+
+   </script>
+ 
+  </body>
+</html>

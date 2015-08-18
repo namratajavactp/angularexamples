@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - custom directive using link function for dom manipulation</title>
+  
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
+  
+  
+
+  
+</head>
+<body ng-app="app">
+    <div my-dom-directive col="grey">Click Me!</div>
+
+<script>
+var app = angular.module('app',[]);
+app.directive('myDomDirective', function ($window) {
+    return {
+        link: function ($scope, element, attrs) {
+            element.bind('click', function () {
+                element.html('You clicked me!');
+            });
+            element.bind('mouseenter', function () {
+                var c = attrs.col;
+              //  $window.alert(c);
+             //   element.css('background-color', 'yellow');
+                element.css('background-color', c);
+            });
+            element.bind('mouseleave', function () {
+                element.css('background-color', 'white');
+            });
+        }
+    };
+});
+    //http://www.yearofmoo.com/2013/04/animation-in-angularjs.html
+</script>
+</body>
+</html>
